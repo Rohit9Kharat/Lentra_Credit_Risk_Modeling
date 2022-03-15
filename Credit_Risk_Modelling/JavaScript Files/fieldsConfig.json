@@ -1,0 +1,4 @@
+{
+"label":"ID", "value":"_id",
+"label":"loginDate", "value":"applicantComponentResponse.multiBureauJsonRespose.finishedList.responseJsonObject.accountList.dateOpenedOrDisbursed"
+}

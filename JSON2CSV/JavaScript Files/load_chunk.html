@@ -1,0 +1,62 @@
+<html>
+<head>
+<title>load_chunk.js</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.ln { color: #606366; font-weight: normal; font-style: normal; }
+.s0 { color: rgb(204,120,50); font-weight: bold; }
+.s1 { color: rgb(169,183,198); }
+.s2 { color: rgb(106,135,89); }
+.s3 { color: rgb(204,120,50); }
+.s4 { color: rgb(128,128,128); }
+.s5 { color: rgb(104,151,187); }
+</style>
+</head>
+<BODY BGCOLOR="#2b2b2b">
+<TABLE CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<TR><TD><CENTER>
+<FONT FACE="Arial, Helvetica" COLOR="#000000">
+load_chunk.js</FONT>
+</center></TD></TR></TABLE>
+<pre>
+<span class="s0">const </span><span class="s1">fs = require(</span><span class="s2">'fs'</span><span class="s1">) 
+</span><span class="s0">const </span><span class="s1">{ Parser</span><span class="s3">, </span><span class="s1">transforms: { unwind }} = require(</span><span class="s2">'json2csv'</span><span class="s1">)</span><span class="s3">;</span><span class="s1"> 
+ 
+</span><span class="s0">var </span><span class="s1">stream = fs.createReadStream(</span><span class="s2">'/home/rohit/Lentra/goNoGoCustomerApplication28july.json'</span><span class="s3">, </span><span class="s1">{flags: </span><span class="s2">'r'</span><span class="s3">, </span><span class="s1">encoding: </span><span class="s2">'utf-8'</span><span class="s1">})</span><span class="s3">;</span><span class="s1"> 
+</span><span class="s0">var </span><span class="s1">buf = </span><span class="s2">''</span><span class="s3">;</span><span class="s1"> 
+ 
+stream.on(</span><span class="s2">'data'</span><span class="s3">, </span><span class="s0">function</span><span class="s1">(d) { 
+    buf += d.toString()</span><span class="s3">; </span><span class="s4">// when data is read, stash it in a string buffer</span><span class="s1"> 
+    pump()</span><span class="s3">; </span><span class="s4">// then process the buffer</span><span class="s1"> 
+})</span><span class="s3">;</span><span class="s1"> 
+ 
+</span><span class="s0">function </span><span class="s1">pump() { 
+    </span><span class="s0">var </span><span class="s1">pos</span><span class="s3">;</span><span class="s1"> 
+ 
+    </span><span class="s0">while </span><span class="s1">((pos = buf.indexOf(</span><span class="s2">'</span><span class="s3">\n</span><span class="s2">'</span><span class="s1">)) &gt;= </span><span class="s5">0</span><span class="s1">) { </span><span class="s4">// keep going while there's a newline somewhere in the buffer</span><span class="s1"> 
+        </span><span class="s0">if </span><span class="s1">(pos == </span><span class="s5">0</span><span class="s1">) { </span><span class="s4">// if there's more than one newline in a row, the buffer will now start with a newline</span><span class="s1"> 
+            buf = buf.slice(</span><span class="s5">1</span><span class="s1">)</span><span class="s3">; </span><span class="s4">// discard it</span><span class="s1"> 
+            </span><span class="s0">continue</span><span class="s3">; </span><span class="s4">// so that the next iteration will start with data</span><span class="s1"> 
+        } 
+        processLine(buf.slice(</span><span class="s5">0</span><span class="s3">,</span><span class="s1">pos))</span><span class="s3">; </span><span class="s4">// hand off the line</span><span class="s1"> 
+        buf = buf.slice(pos+</span><span class="s5">1</span><span class="s1">)</span><span class="s3">; </span><span class="s4">// and slice the processed data off the buffer</span><span class="s1"> 
+    } 
+} 
+ 
+</span><span class="s0">function </span><span class="s1">processLine(line) { </span><span class="s4">// here's where we do something with a line</span><span class="s1"> 
+ 
+ 
+    </span><span class="s0">if </span><span class="s1">(line[line.length-</span><span class="s5">1</span><span class="s1">] == </span><span class="s2">'</span><span class="s3">\r</span><span class="s2">'</span><span class="s1">) line=line.substr(</span><span class="s5">0</span><span class="s3">,</span><span class="s1">line.length-</span><span class="s5">1</span><span class="s1">)</span><span class="s3">; </span><span class="s4">// discard CR (0x0D)</span><span class="s1"> 
+ 
+    </span><span class="s0">if </span><span class="s1">(line.length &gt; </span><span class="s5">0</span><span class="s1">) { </span><span class="s4">// ignore empty lines</span><span class="s1"> 
+        </span><span class="s0">const </span><span class="s1">fields =[</span><span class="s2">'_id'</span><span class="s1">]</span><span class="s3">;</span><span class="s1"> 
+        </span><span class="s0">const </span><span class="s1">json2csvParser = </span><span class="s0">new </span><span class="s1">Parser({ fields })</span><span class="s3">;</span><span class="s1"> 
+ 
+        </span><span class="s0">const </span><span class="s1">csv = json2csvParser.parse(line)</span><span class="s3">;</span><span class="s1"> 
+        </span><span class="s4">// var obj = JSON.parse(line); // parse the JSON</span><span class="s1"> 
+        fs.writeFileSync(</span><span class="s2">&quot;./bureau_rrp.csv&quot;</span><span class="s3">, </span><span class="s1">csv)</span><span class="s3">;</span><span class="s1"> 
+        </span><span class="s4">//console.log(obj); // do something with the data here!</span><span class="s1"> 
+    } 
+}</span></pre>
+</body>
+</html>

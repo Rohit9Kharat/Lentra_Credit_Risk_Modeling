@@ -1,0 +1,33 @@
+days = 0;
+		if(StringUtils.equalsIgnoreCase(dpdValue, "SUB") && InstitutionConfig.isSCB(institutionId)){
+			days = 210;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "SUB")){
+			days = 91;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "DBT")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "SMA")){
+			days = 31;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "LSS")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "B")){
+			days = 91;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "D")){
+			days = 91;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "L")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "Q")){
+			days = 91;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "R")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "A")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "E")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "G")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "H")){
+			days = 181;
+		} else if(StringUtils.equalsIgnoreCase(dpdValue, "W")){
+			days = 181;
+		}
+		return days;

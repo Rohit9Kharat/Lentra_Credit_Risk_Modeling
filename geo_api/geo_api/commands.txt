@@ -1,0 +1,40 @@
+conda create -n geoapi_env python=3.7
+
+conda activate geoapi_env
+
+conda install gunicorn
+
+conda install pandas
+
+conda search -c conda-forge geopy
+
+conda install -c conda-forge geopy
+
+conda remove gunicorn
+
+conda install -c anaconda gevent
+
+conda list | grep -i gevent
+
+conda install gunicorn[gevent]
+
+conda install flask
+
+conda list | grep -i flask
+
+conda install -c conda-forge fuzzywuzzy
+
+conda install requests
+
+gunicorn -c gunicorn_config.py wsgi
+
+lsof -i :5000
+
+conda install -c conda-forge jupyterlab
+
+[To see a list of all your environments, type:
+
+conda info --envs
+]
+
+

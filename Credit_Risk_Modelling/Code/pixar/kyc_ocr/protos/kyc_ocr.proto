@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message kyc_ocr_request{
+    bytes doc_image = 1;
+}
+
+message card_details {
+    string card_holder_name = 1;
+    string dob = 2;
+    string gender = 3;
+    string relation_name = 4;
+    string id_no =5;
+}
+
+message kyc_ocr_response {
+    card_details details =1 ;
+    string card_type =2 ;
+}
+
+service ocr_service{
+    rpc GetOcrDetails(kyc_ocr_request) returns(kyc_ocr_response){}
+}

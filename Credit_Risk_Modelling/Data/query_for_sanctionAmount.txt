@@ -1,0 +1,1 @@
+db.goNoGoCustomerApplication28july.find({"_id":"78264000250"},{"applicantComponentResponse.multiBureauJsonRespose.finishedList":1}).sort({$natural:-1})

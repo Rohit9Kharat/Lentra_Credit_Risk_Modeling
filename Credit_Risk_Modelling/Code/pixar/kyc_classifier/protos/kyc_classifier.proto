@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+// input request
+message classifier_request{
+    bytes doc_img =1;
+}
+
+message classifier_response{
+    string doc_type =1;
+}
+service doc_classifier_service {
+    rpc GetDocType(classifier_request) returns(classifier_response){}
+}
+

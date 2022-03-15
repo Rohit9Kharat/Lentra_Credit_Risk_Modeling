@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+service rotation_service {
+    rpc RotateImage(rotation_requet) returns (rotation_response) {}
+}
+
+message rotation_requet{
+    bytes image_to_rotate =1;
+}
+
+message rotation_response{
+    bytes rotated_image =1 ;
+}
+

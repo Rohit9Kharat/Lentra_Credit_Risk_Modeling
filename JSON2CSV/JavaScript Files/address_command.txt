@@ -1,0 +1,10 @@
+/*
+ json2csv -i gonogo_28july.json -f _id,applicationRequest.request.applicant.address[0].addressType,applicationRequest.request.applicant.address[0].addressLine1,
+applicationRequest.request.applicant.address[0].addressLine2,applicationRequest.request.applicant.address[0].city,applicationRequest.request.applicant.address[0].pin,
+applicationRequest.request.applicant.address[0].state,applicationRequest.request.applicant.address[0].landMark,applicationRequest.request.applicant.address[1].addressType,
+applicationRequest.request.applicant.address[1].addressLine1,applicationRequest.request.applicant.address[1].addressLine2,applicationRequest.request.applicant.address[1].city,
+applicationRequest.request.applicant.address[1].pin,applicationRequest.request.applicant.address[1].state,applicationRequest.request.applicant.address[1].landMark,
+applicationRequest.request.applicant.address[2].addressType,applicationRequest.request.applicant.address[2].addressLine1,applicationRequest.request.applicant.address[2].addressLine2,
+applicationRequest.request.applicant.address[2].city,applicationRequest.request.applicant.address[2].pin,applicationRequest.request.applicant.address[2].state,
+applicationRequest.request.applicant.address[2].landMark > g.csv
+*/

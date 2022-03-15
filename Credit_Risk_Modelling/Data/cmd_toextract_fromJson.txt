@@ -1,0 +1,2 @@
+cat schema.json | grep CIBIL_RESPONSE | wc -l
+cat schema.json | grep CIBIL_RESPONSE

@@ -1,0 +1,7 @@
+  paths:
+  - pan_save_directory: /data1/Filter
+  - pan_srcdir_pattern: /home/nikhil/datasets/ocr_one//*PAN.jpg
+  - csv_save_path: /data1/Names
+  - csv_read_path: /data1/Names
+  - plot_save_dir: /data1/Names
+  - merge_csv_path: /data1/Csvs
